@@ -15,9 +15,9 @@ def generate_mobi(htmlfile):
 	
 
 def init_html(filename):
-	file = open(filename, 'w+')
+	file = open(filename, 'w+', encoding='utf-8')
 	title = filename.strip(".html")
-	file.write('<!doctype html>\r\n<html>\r\n<head>\n<title>' + title +'</title>\n<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">\n<link rel="stylesheet" href="style.css">\n</head>\r\n')
+	file.write('<!doctype html>\r\n<html>\r\n<head>\n<title>' + title +'</title>\n<meta http-equiv="content-type" content="text/html; charset=utf-8">\n<link rel="stylesheet" href="style.css">\n</head>\r\n')
 	return file
 
 
@@ -31,15 +31,6 @@ def html_from_chapters(file, chapters):
 		#chapter contents are contained in a css class called "chapter-content". Extract each paragraph from the content
 		contents = html_soup.find(class_="chapter-content")
 		for paragraph in contents.find_all("p"):
-		
-			#handle special characters messing up encoding
-			'''
-			bad_chars = [u'\u266a', u'\u25fb', u'\u2661']
-			replacement = str(paragraph)
-			for char in bad_chars:
-				if char in str(paragraph):
-					replacement = str(paragraph).replace(char,"")
-			'''		
 			file.write(str(paragraph) + '\r\n')
 		chap_num += 1
 	file.write("\n</body>\r\n")

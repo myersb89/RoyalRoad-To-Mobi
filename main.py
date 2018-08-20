@@ -13,7 +13,7 @@ if validate_url(url):
 	print("compiling chapters...")
 	html_file = title.replace(" ","") + '.html'
 	mybook = init_html(html_file)
-	html_from_chapters(mybook,chapter_urls[0:2])
+	html_from_chapters(mybook,chapter_urls)
 	close_html(mybook)
 
 	#generate mobi file
