@@ -28,10 +28,10 @@ def html_from_chapters(file, chapters):
 		file.write('<h1>Chapter ' + str(chap_num) + '</h1>\n')
 		html_soup = BeautifulSoup(simple_get(chap), 'html.parser')
 			
-		#chapter contents are contained in a css class called "chapter-content". Extract each paragraph from the content
+		#chapter contents are contained in a css class called "chapter-content".
 		contents = html_soup.find(class_="chapter-content")
-		for paragraph in contents.find_all("p"):
-			file.write(str(paragraph) + '\r\n')
+		file.write(str(contents) + '\r\n')
+
 		chap_num += 1
 	file.write("\n</body>\r\n")
 
